@@ -7,15 +7,15 @@ mongoose.connect(
   `mongodb+srv://admin:adminpass@cluster0.45swmim.mongodb.net/${process.env.DB_NAME}`
 );
 
-const permitRouter = require("./routes/permit");
-
 app.use(express.json());
+
+const permitRouter = require("./routes/permit");
 
 app.use("/permits", permitRouter);
 
 app.use((err, req, res, next) => {
-  console.error(err.stack);
-  res.status(500).send("Something Broke");
+  err.status = err.status || 500;
+  res.status(err.status).json({ status : false, message : err.message });
 });
 
 app.listen(
