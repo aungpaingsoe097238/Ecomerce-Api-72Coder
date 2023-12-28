@@ -10,12 +10,14 @@ mongoose.connect(
 app.use(express.json());
 
 const permitRouter = require("./routes/permit");
+const roleRouter = require("./routes/role");
 
 app.use("/permits", permitRouter);
+app.use("/roles", roleRouter);
 
 app.use((err, req, res, next) => {
   err.status = err.status || 500;
-  res.status(err.status).json({ status : false, message : err.message });
+  res.status(err.status).json({ status: false, message: err.message });
 });
 
 app.listen(
