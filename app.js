@@ -20,6 +20,14 @@ app.use((err, req, res, next) => {
   res.status(err.status).json({ status: false, message: err.message });
 });
 
+const defaultData = async () => {
+  let migrator = require("./migrations/migrator");
+  // await migrator.migrate();
+  await migrator.backup();
+};
+
+defaultData();
+
 app.listen(
   process.env.PORT,
   console.log(`Server is running at ${process.env.PORT}`)
