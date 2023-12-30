@@ -11,9 +11,11 @@ app.use(express.json());
 
 const permitRouter = require("./routes/permit");
 const roleRouter = require("./routes/role");
+const userRouter = require("./routes/user");
 
 app.use("/permits", permitRouter);
 app.use("/roles", roleRouter);
+app.use("/users", userRouter);
 
 app.use((err, req, res, next) => {
   err.status = err.status || 500;
