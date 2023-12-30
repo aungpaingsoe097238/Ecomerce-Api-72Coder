@@ -30,6 +30,7 @@ const login = async (req, res, next) => {
     if (helper.comparePass(req.body.password, dbUser.password)) {
       let user = dbUser.toObject();
       delete user.password;
+      user.token = helper.makeToken(user);
       helper.set(user._id, user);
       helper.format_message(res, "Login Success", user);
     } else {
