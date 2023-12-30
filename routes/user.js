@@ -28,4 +28,18 @@ router.post("/remove/role", [
   controller.removeRole,
 ]);
 
+router.post("/add/permit", [
+  validateToken(),
+  validateRole("Owner"),
+  validateBody(userSchema.addPermit),
+  controller.addPermit,
+]);
+
+router.post("/remove/permit", [
+  validateToken(),
+  validateRole("Owner"),
+  validateBody(userSchema.addPermit),
+  controller.removePermit,
+]);
+
 module.exports = router;
