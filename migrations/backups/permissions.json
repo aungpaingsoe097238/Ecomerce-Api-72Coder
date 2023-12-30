@@ -1,0 +1,17 @@
+[
+    {
+        "_id": "65902eab974f8cadd48e3554",
+        "name": "create_category",
+        "__v": 0
+    },
+    {
+        "_id": "65902eab974f8cadd48e3555",
+        "name": "edit_category",
+        "__v": 0
+    },
+    {
+        "_id": "65902eab974f8cadd48e3556",
+        "name": "delete_category",
+        "__v": 0
+    }
+]

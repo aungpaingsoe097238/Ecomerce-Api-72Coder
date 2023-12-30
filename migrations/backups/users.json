@@ -1,1 +1,24 @@
-[{"_id":"658ee5ce762a1eb9d5d602ed","name":"Owner","email":"owner@gmail.com","phone":"0938843848","password":"$2a$10$DjC3OQlAReqtCqyAnHxW1upc54muBJJYero0dX6o4o4GeqYPvvwbq","roles":[],"permits":[],"created":"2023-12-29T15:29:18.854Z","__v":0},{"_id":"658ee5ce762a1eb9d5d602ee","name":"Manager","email":"manager@gmail.com","phone":"0938843834","password":"$2a$10$UdU4mBFvCsP9XvjCci3DGuIeQLzR.R24PuUQpQ1Lz4hX.Nd1L9bQ6","roles":[],"permits":[],"created":"2023-12-29T15:29:18.922Z","__v":0},{"_id":"658febbc36af998cc587bc21","name":"AungPaingSoe","email":"aps@gmail.com","phone":"12345678","password":"12345678","roles":[],"permits":[],"created":"2023-12-30T10:06:52.579Z","__v":0},{"_id":"658fec26f33b92e96ef56675","name":"AungPaingSoe","email":"sela@gmail.com","phone":"123456783","password":"12345678","roles":[],"permits":[],"created":"2023-12-30T10:08:38.456Z","__v":0}]
+[
+    {
+        "_id": "65902eab974f8cadd48e354f",
+        "name": "Owner",
+        "email": "owner@gmail.com",
+        "phone": "0938843848",
+        "password": "$2a$10$cuV6yyqUbuXBhU5knc2hj.Z.8CZtQwaii.xwLmlHbDUkU/gOh1Xaa",
+        "roles": [],
+        "permits": [],
+        "created": "2023-12-30T14:52:27.622Z",
+        "__v": 0
+    },
+    {
+        "_id": "65902eab974f8cadd48e3550",
+        "name": "Manager",
+        "email": "manager@gmail.com",
+        "phone": "0938843834",
+        "password": "$2a$10$xOxyEIA7vagf9nObvSJJNu9i8XgFdZvXa205G88dk2wrfKE1UFurO",
+        "roles": [],
+        "permits": [],
+        "created": "2023-12-30T14:52:27.690Z",
+        "__v": 0
+    }
+]

@@ -24,7 +24,7 @@ app.use((err, req, res, next) => {
 
 const defaultData = async () => {
   let migrator = require("./migrations/migrator");
-  // await migrator.migrate();
+  await migrator.migrate();
   await migrator.backup();
 };
 

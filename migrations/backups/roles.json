@@ -1,0 +1,20 @@
+[
+    {
+        "_id": "65902eab974f8cadd48e3551",
+        "name": "Manager",
+        "permits": [],
+        "__v": 0
+    },
+    {
+        "_id": "65902eab974f8cadd48e3553",
+        "name": "User",
+        "permits": [],
+        "__v": 0
+    },
+    {
+        "_id": "65902eab974f8cadd48e3552",
+        "name": "Supervisor",
+        "permits": [],
+        "__v": 0
+    }
+]
