@@ -12,6 +12,10 @@ module.exports = {
       phone: Joi.string().required(),
       password: Joi.string().required(),
     }),
+    addRole: Joi.object({
+      userId: Joi.string().regex(/^[0-9a-fA-F]{24}$/),
+      roleId: Joi.string().regex(/^[0-9a-fA-F]{24}$/),
+    }),
   },
   permitSchema: {
     add: Joi.object({

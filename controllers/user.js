@@ -1,4 +1,5 @@
 const userDB = require("../models/user");
+const roleDB = require("../models/role");
 const helper = require("../utils/helper");
 
 const register = async (req, res, next) => {
@@ -41,7 +42,43 @@ const login = async (req, res, next) => {
   }
 };
 
+const addRole = async (req, res, next) => {
+  let dbUser = await userDB.findById(req.body.userId);
+  let dbRole = await roleDB.findById(req.body.roleId);
+
+  let findRole = dbUser.roles.find((rid) => rid.equals(dbRole._id));
+
+  if (findRole) {
+    next(new Error("Role already exit"));
+  } else {
+    await userDB.findByIdAndUpdate(dbUser.id, {
+      $push: { roles: dbRole._id },
+    });
+    let user = await userDB.findById(dbUser._id);
+    helper.format_message(res, "Added role to user", user);
+  }
+};
+
+const removeRole = async (req, res, next) => {
+  let dbUser = await userDB.findById(req.body.userId);
+  let dbRole = await roleDB.findById(req.body.roleId);
+
+  let findRole = dbUser.roles.find((rid) => rid.equals(dbRole._id));
+
+  if (!findRole) {
+    next(new Error("Role not found"));
+  } else {
+    await userDB.findByIdAndUpdate(dbUser.id, {
+      $pull: { roles: dbRole._id },
+    });
+    let user = await userDB.findById(dbUser._id);
+    helper.format_message(res, "Added role to user", user);
+  }
+};
+
 module.exports = {
   register,
   login,
+  addRole,
+  removeRole
 };

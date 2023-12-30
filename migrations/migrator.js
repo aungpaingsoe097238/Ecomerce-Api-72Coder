@@ -6,25 +6,30 @@ const helper = require("../utils/helper");
 
 const migrate = () => {
   let userData = fs.readFileSync("./migrations/users.json");
-  let roleData = fs.readFileSync("./migrations/roles.json");
-  let permitData = fs.readFileSync("./migrations/permissions.json");
-
   let users = JSON.parse(userData);
-  let roles = JSON.parse(roleData);
-  let permissions = JSON.parse(permitData);
-
   users.forEach(async (user) => {
     user.password = helper.encode(user.password);
     await new userDB(user).save();
   });
+};
 
+const roles_permissions_migrate = () => {
+  let roleData = fs.readFileSync("./migrations/roles.json");
+  let permitData = fs.readFileSync("./migrations/permissions.json");
+  let roles = JSON.parse(roleData);
+  let permissions = JSON.parse(permitData);
   roles.forEach(async (role) => {
     await new roleDB(role).save();
   });
-
   permissions.forEach(async (permission) => {
     await new permitDB(permission).save();
   });
+};
+
+const add_owner_role = async () => {
+  let dbOwner = await userDB.findOne({ phone: "0938843848" });
+  let dbRole = await roleDB.findOne({ name: "Owner" });
+  await userDB.findByIdAndUpdate(dbOwner._id, { $push: { roles: dbRole._id } });
 };
 
 const backup = async () => {
@@ -42,4 +47,6 @@ const backup = async () => {
 module.exports = {
   migrate,
   backup,
+  roles_permissions_migrate,
+  add_owner_role
 };

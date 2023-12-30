@@ -45,4 +45,14 @@ module.exports = {
       }
     };
   },
+  validateRole: (role) => {
+    return async (req, res, next) => {
+      let findRole = await req.user.roles.find((ro) => ro.name === role);
+      if (findRole) {
+        next();
+      } else {
+        next(new Error("User don't have right permissions"));
+      }
+    };
+  },
 };

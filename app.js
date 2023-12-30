@@ -24,7 +24,9 @@ app.use((err, req, res, next) => {
 
 const defaultData = async () => {
   let migrator = require("./migrations/migrator");
-  await migrator.migrate();
+  // await migrator.migrate();
+  // await migrator.roles_permissions_migrate();
+  // await migrator.add_owner_role();
   await migrator.backup();
 };
 
