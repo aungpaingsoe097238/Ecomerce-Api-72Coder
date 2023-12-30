@@ -12,12 +12,12 @@ app.use(express.json());
 const permitRouter = require("./routes/permit");
 const roleRouter = require("./routes/role");
 const userRouter = require("./routes/user");
-const { validateToken, hasAnyRole } = require("./utils/validator");
+const { validateToken, hasAnyRole, hasAnyPermit } = require("./utils/validator");
 
 app.use("/permits", permitRouter);
 app.use("/roles", [
   validateToken(),
-  hasAnyRole(["Owner", "Manager", "User"]),
+  hasAnyPermit(["create_category", "edit_category", "delete_category"]),
   roleRouter,
 ]);
 app.use("/users", userRouter);
