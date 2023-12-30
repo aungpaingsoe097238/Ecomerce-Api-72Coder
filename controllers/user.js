@@ -24,11 +24,13 @@ const register = async (req, res, next) => {
 const login = async (req, res, next) => {
   const dbUser = await userDB
     .findOne({ phone: req.body.phone })
-    .populate("roles permits").select("-__v");
+    .populate("roles permits")
+    .select("-__v");
   if (dbUser) {
     if (helper.comparePass(req.body.password, dbUser.password)) {
       let user = dbUser.toObject();
       delete user.password;
+      helper.set(user._id, user);
       helper.format_message(res, "Login Success", user);
     } else {
       next(new Error("Credential Error"));
