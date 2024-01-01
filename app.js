@@ -1,6 +1,8 @@
 require("dotenv").config();
 const express = require("express"),
   app = express(),
+  server = require("http").createServer(app),
+  io = require("socket.io")(server),
   mongoose = require("mongoose"),
   fileupload = require("express-fileupload");
 
@@ -33,6 +35,12 @@ app.use((err, req, res, next) => {
   res.status(err.status).json({ status: false, message: err.message });
 });
 
+io.on("connection", (socket) => {
+  socket.on("test", (data) => {
+    socket.emit("success", { greet: "Hello Client" });
+  });
+});
+
 const defaultData = async () => {
   let migrator = require("./migrations/migrator");
   // await migrator.migrate();
@@ -43,7 +51,7 @@ const defaultData = async () => {
 
 defaultData();
 
-app.listen(
+server.listen(
   process.env.PORT,
   console.log(`Server is running at ${process.env.PORT}`)
 );
